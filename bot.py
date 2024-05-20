@@ -41,8 +41,8 @@ class Onchain:
             "accept": "application/json, text/plain, */*",
             "accept-language": "en-US,en;q=0.5",
             "content-type": "application/json",
-            "origin": "https://db4.onchaincoin.io",
-            "referer": "https://db4.onchaincoin.io/",
+            "origin": "https://www.thecubes.xyz",
+            "referer": "https://www.thecubes.xyz",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "same-origin",
@@ -162,7 +162,7 @@ class Onchain:
     def get_me(self, token, show_name=False):
         headers = self.headers
         headers["authorization"] = f"Bearer {token}"
-        res = self.http("https://db4.onchaincoin.io/api/info", headers)
+        res = self.http("https://www.thecubes.xyz/api/info", headers)
         if '"success":true' in res.text:
             name = res.json()["user"]["fullName"]
             clicks = res.json()["user"]["clicks"]
@@ -186,7 +186,7 @@ class Onchain:
         headers["authorization"] = f"Bearer {token}"
         headers["content-length"] = str(len(json.dumps(data)))
         res = self.http(
-            "https://db4.onchaincoin.io/api/klick/myself/click",
+            "https://www.thecubes.xyz/api/klick/myself/click",
             headers,
             json.dumps(data),
         )
@@ -206,7 +206,7 @@ class Onchain:
                 if self.has_recovery:
                     headers["content-length"] = str(len(json.dumps({})))
                     self.http(
-                        "https://db4.onchaincoin.io/api/boosts/energy",
+                        "https://www.thecubes.xyz/api/boosts/energy",
                         headers=headers,
                         data=json.dumps({}),
                     )
@@ -228,7 +228,7 @@ class Onchain:
         headers["content-length"] = str(len(json.dumps(data)))
         while True:
             res = self.http(
-                "https://db4.onchaincoin.io/api/validate", headers, json.dumps(data)
+                "https://www.thecubes.xyz/api/validate", headers, json.dumps(data)
             )
             if '"success":true' in res.text:
                 token = res.json()["token"]
